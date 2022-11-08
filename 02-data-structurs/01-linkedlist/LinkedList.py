@@ -80,18 +80,3 @@ class LinkedList:
         prev_node.next = new_node
         self.length += 1
         return
-
-
-def main():
-    nodes = ['a', 'b', 'c', 'd']
-    linkedlist = LinkedList(nodes)
-    for item in linkedlist.traverse():
-        print(item)
-    print('----------------------------')
-    linkedlist.insert('s', 10)
-    for item in linkedlist.traverse():
-        print(item)
-
-
-if __name__ == '__main__':
-    main()
