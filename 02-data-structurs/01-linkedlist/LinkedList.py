@@ -30,6 +30,7 @@ class LinkedList:
         while current_node:
             yield current_node.data
             current_node = current_node.next
+        return
 
     def append(self, data):
         current_node = Node(data)
@@ -37,6 +38,7 @@ class LinkedList:
         self.rear = self.rear.next
         self.rear.next = None
         self.length += 1
+        return
 
     def delete(self, data):
         current_node = self.head
@@ -55,15 +57,38 @@ class LinkedList:
                 return
             prev_node = current_node
             current_node = current_node.next
+        return
+
+    def insert(self, data, position):
+        current_node = self.head
+        prev_node = None
+        if position > self.length + 1:
+            raise Exception('Position does not match linkedlist\'s length.')
+
+        if position == 1:
+            new_node = Node(data)
+            new_node.next = current_node
+            self.head = new_node
+            return
+        current_pos = 1
+        while current_pos < position:
+            prev_node = current_node
+            current_node = current_node.next
+            current_pos += 1
+        new_node = Node(data)
+        new_node.next = current_node
+        prev_node.next = new_node
+        self.length += 1
+        return
 
 
 def main():
-    nodes = ['a']
+    nodes = ['a', 'b', 'c', 'd']
     linkedlist = LinkedList(nodes)
     for item in linkedlist.traverse():
         print(item)
     print('----------------------------')
-    linkedlist.delete('a')
+    linkedlist.insert('s', 10)
     for item in linkedlist.traverse():
         print(item)
 
