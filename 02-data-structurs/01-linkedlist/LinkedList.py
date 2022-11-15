@@ -77,3 +77,39 @@ class LinkedList:
         prev_node.next = new_node
         self.length += 1
         return
+
+    def reverse(self):
+        current_node = self.head
+        new_head = None
+        while current_node.next:
+            if current_node == self.head:
+                new_node = Node(current_node.data)
+                new_node.next = None
+                next_node = current_node.next
+                prev_node = Node(next_node.data)
+                prev_node.next = new_node
+                new_head = prev_node
+            else:
+                new_node = Node(next_node.data)
+                new_node.next = new_head
+                new_head = new_node
+
+            next_node = next_node.next
+            current_node = current_node.next
+        return new_head
+
+
+def main():
+    li = ['a', 'b', 'c', 'd']
+    linked = LinkedList(li)
+    for i in linked.traverse():
+        print(i)
+    head = linked.reverse()
+    current_node = head
+    while current_node:
+        print(current_node.data)
+        current_node = current_node.next
+
+
+if __name__ == '__main__':
+    main()
